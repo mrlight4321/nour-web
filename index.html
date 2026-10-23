@@ -29,11 +29,13 @@
         nav ul { display: flex; list-style: none; gap: 25px; align-items: center; }
         nav ul li a { text-decoration: none; color: var(--dark); font-weight: 600; transition: 0.3s; }
         nav ul li a:hover { color: var(--primary); }
-        .header-actions { display: flex; align-items: center; gap: 15px; }
+        .header-actions { display: flex; align-items: center; gap: 10px; }
         .theme-toggle, .menu-toggle { background: none; border: none; font-size: 1.3rem; color: var(--dark); cursor: pointer; padding: 8px; }
         .menu-toggle { display: none; }
-        .btn { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 10px 25px; border-radius: 50px; text-decoration: none; font-weight: 600; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); transition: 0.3s; border: none; cursor: pointer; display: inline-block; }
+        .btn { background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; padding: 10px 22px; border-radius: 50px; text-decoration: none; font-weight: 600; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3); transition: 0.3s; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
         .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4); }
+        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); box-shadow: none; }
+        .btn-outline:hover { background: var(--primary); color: white; }
         .btn-whatsapp { background: var(--whatsapp); box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3); }
         .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-between; padding: 0 8%; background: var(--hero-bg); padding-top: 100px; }
         .hero-content { max-width: 600px; }
@@ -69,11 +71,14 @@
             nav.active { display: block; }
             nav ul { flex-direction: column; gap: 15px; }
             .menu-toggle { display: block; }
+            .header-actions { gap: 5px; }
+            .btn { padding: 8px 15px; font-size: 0.85rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- الشريط العلوي -->
     <header>
         <a href="#" class="logo">Nour<span>Web</span></a>
         <nav id="navMenu">
@@ -82,16 +87,17 @@
                 <li><a href="#services">خدماتنا</a></li>
                 <li><a href="#portfolio">أعمالنا</a></li>
                 <li><a href="#contact">تواصل معنا</a></li>
-                <li><a href="#admin">لوحة المشرف</a></li>
             </ul>
         </nav>
         <div class="header-actions">
             <button class="theme-toggle" onclick="toggleTheme()"><i class="fas fa-moon" id="themeIcon"></i></button>
             <button class="menu-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+            <a href="#admin" class="btn btn-outline"><i class="fas fa-lock"></i> تسجيل الدخول</a>
             <a href="#contact" class="btn">ابدأ مشروعك</a>
         </div>
     </header>
 
+    <!-- الواجهة الرئيسية -->
     <section class="hero" id="hero">
         <div class="hero-content">
             <span class="hero-badge">🔥 عروض خاصة بمناسبة الإطلاق</span>
@@ -102,6 +108,7 @@
         <div class="hero-image"><i class="fas fa-code" style="font-size: 12rem; color: var(--primary);"></i></div>
     </section>
 
+    <!-- خدماتنا -->
     <section class="services" id="services">
         <h2 class="section-title">خدماتنا الاحترافية</h2>
         <p class="section-subtitle">لماذا يختار العملاء Nour Web لمشاريعهم؟</p>
@@ -112,6 +119,7 @@
         </div>
     </section>
 
+    <!-- معرض الأعمال -->
     <section class="portfolio" id="portfolio">
         <h2 class="section-title" style="text-align: center;">نماذج من أعمالنا</h2>
         <p class="section-subtitle" style="text-align: center;">مشاريع فخورون بتنفيذها وإطلاقها بنجاح</p>
@@ -120,6 +128,7 @@
         </div>
     </section>
 
+    <!-- نموذج التواصل -->
     <section class="contact" id="contact">
         <h2 class="section-title" style="text-align: center;">ابدأ مشروعك الآن</h2>
         <form class="contact-form" onsubmit="sendToWhatsApp(event)">
@@ -130,6 +139,7 @@
         </form>
     </section>
 
+    <!-- لوحة المشرف وتسجيل الدخول -->
     <section class="admin-section" id="admin">
         <h2 class="section-title" style="text-align: center;">تسجيل دخول المشرف</h2>
         <div class="admin-card">
@@ -173,7 +183,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // إعدادات Firebase الخاصة بمشروعك
         const firebaseConfig = {
             apiKey: "AIzaSyDU7247ziHvnJ74rsXDP0m7ux-a2hhvr_0",
             authDomain: "nour-web-d0d96.firebaseapp.com",
