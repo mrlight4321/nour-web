@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mrlight4321.github.io/nour-web/sitemap.xml
